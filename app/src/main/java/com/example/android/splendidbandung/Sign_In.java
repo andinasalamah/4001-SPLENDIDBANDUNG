@@ -24,7 +24,7 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
     private View coordinatorLayout;
     GoogleSignInOptions gso;
     GoogleSignInAccount account;
-    private int[] images = {R.drawable.tangkuban_parahu, R.drawable.panoramic_view1, R.drawable.kawah_putih_bandung, R.drawable.download};
+    private int[] images = {R.drawable.foto2, R.drawable.foto4, R.drawable.foto6, R.drawable.foto5, R.drawable.foto7};
     //TODO: Get better quality images in portrait
 
     @Override
@@ -34,8 +34,9 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
         coordinatorLayout = findViewById(R.id.coordinator_lo);
         //Using carouselView by sayyam (https://github.com/sayyam/carouselview)
         CarouselView carouselView = findViewById(R.id.carousel);
-        carouselView.setPageCount(images.length);
         carouselView.setImageListener(imageListener);
+        carouselView.setPageCount(images.length);
+
         //Using Google Services API
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -73,6 +74,9 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
             account = task.getResult(ApiException.class);
             Snackbar.make(coordinatorLayout, "Kamu terdaftar sebagai " + account.getDisplayName(), Snackbar.LENGTH_LONG)
                     .show(); //TODO: lakukan tindakan pemisahan dengan guest untuk bagian ini
+            Intent intent = new Intent (this, MainActivity.class);
+            startActivity(intent);
+
         } catch (ApiException e) {
             Snackbar.make(coordinatorLayout, "Login gagal! " + e.getStatusCode(), Snackbar.LENGTH_INDEFINITE);
         }
