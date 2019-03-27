@@ -1,10 +1,10 @@
 package com.example.android.splendidbandung;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -12,25 +12,29 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 public class Sign_In extends AppCompatActivity implements View.OnClickListener {
+    GoogleSignInOptions gso;
+    GoogleSignInAccount account;
     private GoogleSignInClient mGoogleSignInClient;
     private int RC_SIGN_IN = 101;
     private View coordinatorLayout;
-    GoogleSignInOptions gso;
-    GoogleSignInAccount account;
     private int[] images = {R.drawable.foto2, R.drawable.foto4, R.drawable.foto6, R.drawable.foto5, R.drawable.foto7};
-    //TODO: Get better quality images in portrait
+    private ImageListener imageListener = new ImageListener() {
+        @Override
+        public void setImageForPosition(int position, ImageView imageView) {
+            imageView.setImageResource(images[position]);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign__in);
+        setContentView(R.layout.activity_sign_in);
         coordinatorLayout = findViewById(R.id.coordinator_lo);
         //Using carouselView by sayyam (https://github.com/sayyam/carouselview)
         CarouselView carouselView = findViewById(R.id.carousel);
@@ -73,13 +77,18 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
         try {
             account = task.getResult(ApiException.class);
             Snackbar.make(coordinatorLayout, "Kamu terdaftar sebagai " + account.getDisplayName(), Snackbar.LENGTH_LONG)
-                    .show(); //TODO: lakukan tindakan pemisahan dengan guest untuk bagian ini
-            Intent intent = new Intent (this, MainActivity.class);
-            startActivity(intent);
+                    .show();
+            start(account.getDisplayName());
 
         } catch (ApiException e) {
             Snackbar.make(coordinatorLayout, "Login gagal! " + e.getStatusCode(), Snackbar.LENGTH_INDEFINITE);
         }
+    }
+
+    private void start(String DisplayName) {
+        Intent intent = new Intent(this, MainMenu.class);
+        intent.putExtra("DisplayName", DisplayName);
+        startActivity(intent);
     }
 
     @Override
@@ -88,16 +97,10 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
         account = GoogleSignIn.getLastSignedInAccount(this);
         if (account != null) {
             Snackbar.make(coordinatorLayout, "Kamu terdaftar sebagai " + account.getDisplayName(), Snackbar.LENGTH_LONG)
-                    .show(); //TODO: gunakan sesuatu untuk bagian ini
+                    .show();
+            start(account.getDisplayName());
         }
 
     }
-
-    private ImageListener imageListener = new ImageListener() {
-        @Override
-        public void setImageForPosition(int position, ImageView imageView) {
-            imageView.setImageResource(images[position]);
-        }
-    };
 
 }
