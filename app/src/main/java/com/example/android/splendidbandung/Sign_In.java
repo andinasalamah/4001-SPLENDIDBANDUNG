@@ -98,7 +98,7 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
         if (account != null) {
             Snackbar.make(coordinatorLayout, "Kamu terdaftar sebagai " + account.getDisplayName(), Snackbar.LENGTH_LONG)
                     .show();
-            start(account.getDisplayName());
+            finish();
         }
 
     }
