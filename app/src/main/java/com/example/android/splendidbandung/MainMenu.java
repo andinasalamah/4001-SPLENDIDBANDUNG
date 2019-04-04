@@ -55,6 +55,7 @@ public class MainMenu extends AppCompatActivity {
         mTabLayout = findViewById(R.id.tabLayout);
         tabsAdapter.addFragment(new TravelFragment(), "Travel");
         tabsAdapter.addFragment(new TimelineFragment(), "Timeline");
+        tabsAdapter.addFragment(new LaporanFragment(), "Laporan");
         mViewPager.setAdapter(tabsAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
     }
