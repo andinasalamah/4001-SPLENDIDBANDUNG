@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,6 +50,7 @@ public class MainMenu extends AppCompatActivity {
             Intent intent = new Intent(MainMenu.this, Sign_In.class);
             startActivityForResult(intent, 4000);
         }
+        FirebaseApp.initializeApp(this);
         txDisplayName = findViewById(R.id.greetings);
         displayName();
         mViewPager = findViewById(R.id.viewpager);
