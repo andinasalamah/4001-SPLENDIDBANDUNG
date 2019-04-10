@@ -45,7 +45,7 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
         //Using Google Services API
         FirebaseApp.initializeApp(this);
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken("405184337418-b0gtnl69g7amurfc5mjbr10csjicamg1.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -89,7 +89,7 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void start(String DisplayName) {
-        Intent intent = new Intent(this, MainMenu.class);
+        Intent intent = new Intent(Sign_In.this, MainMenu.class);
         intent.putExtra("DisplayName", DisplayName);
         startActivity(intent);
     }
@@ -101,6 +101,7 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
         if (account != null) {
             Snackbar.make(coordinatorLayout, "Kamu terdaftar sebagai " + account.getDisplayName(), Snackbar.LENGTH_LONG)
                     .show();
+            start(account.getDisplayName());
             finish();
         }
 
