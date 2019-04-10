@@ -1,87 +1,132 @@
 package com.example.android.splendidbandung;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
-import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TimelineFragment extends Fragment {
 
     private Context context;
     //private static final String TAG = "MainActivity";
-        private static final int ADD_DATA_REQUEST_CODE = 4410;
+    private static final int ADD_DATA_REQUEST_CODE = 4410;
     //    private ViewHolder viewHolder;
     //    private RecyclerView recyclerView;
     //    private RecyclerView.LayoutManager layoutManager;
-        private FirebaseRecyclerAdapter firebase;
-    //    private CoordinatorLayout coord_main;
-        private String ppImageURL, postImageURL;
-        private View inflate, view;
+    private FirebaseRecyclerAdapter firebase;
+        private CoordinatorLayout coord_main;
+    private String ppImageURL, postImageURL;
+    private View inflate, view;
     private RecyclerView recyclerView;
-
     private RecyclerView.LayoutManager layoutManager;
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        FirebaseApp.initializeApp(context);
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("posts").push();
-        recyclerView = (RecyclerView) view.findViewById(R.id.timeline_recycler);
-        layoutManager = new LinearLayoutManager(getContext());
-        fetch();
-
-    }
+    private DatabaseReference mDatabaseRef;
+    private DatabaseReference childRef;
+    private FirebaseAuth mAuth;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         context = getContext();
         view = inflater.inflate(R.layout.fragment_timeline, container, false);
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference().push();
+        layoutManager = new LinearLayoutManager(context);
+        childRef = mDatabaseRef.child("timeline");
+        recyclerView = view.findViewById(R.id.timeline_recycler);
+        coord_main = view.findViewById(R.id.coor_timeline);
+        mAuth = FirebaseAuth.getInstance();
+
+        fetch();
+        FloatingActionButton fab = view.findViewById(R.id.fab_post);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add_data();
+            }
+        });
+        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<TimelineAbstract> list = new ArrayList<>();
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    list.add(snapshot.getValue(TimelineAbstract.class));
+                    Toast.makeText(getContext(), list.get(0).toString(), Toast.LENGTH_LONG)
+                            .show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         return view;
+    }
+
+    private void add_data() {
+        Intent intent = new Intent(context, NewTimelinePost.class);
+        startActivity(intent);
     }
 
     private void fetch() {
         Query query = FirebaseDatabase.getInstance()
                 .getReference()
-                .child("posts");
+                .child("timeline");
+
         FirebaseRecyclerOptions<TimelineAbstract> options =
                 new FirebaseRecyclerOptions.Builder<TimelineAbstract>()
-                .setQuery(query, new SnapshotParser<TimelineAbstract>() {
-                    @NonNull
-                    @Override
-                    public TimelineAbstract parseSnapshot(@NonNull DataSnapshot snapshot) {
-                        ppImageURL = snapshot.child("image").getValue().toString();
-                        return new TimelineAbstract
-                                (snapshot.child("nama").getValue().toString(),
-                                 snapshot.child("image_pp").getValue().toString(),
-                                 snapshot.child("image_post").getValue().toString(),
-                                 snapshot.child("isi").getValue().toString(),
-                                 snapshot.child("tanggal").getValue().toString());
-                    }
-                }).build();
+                        .setQuery(query, new SnapshotParser<TimelineAbstract>() {
+
+                            @NonNull
+                            @Override
+                            public TimelineAbstract parseSnapshot(@NonNull DataSnapshot snapshot) {
+
+                                if (snapshot.child("image").exists()) {
+                                    return new TimelineAbstract(snapshot.child("nama").getValue().toString(),
+                                            snapshot.child("image").getValue().toString(),
+                                            snapshot.child("isi").getValue().toString(),
+                                            snapshot.child("tanggal").getValue().toString(),
+                                            snapshot.child("jam").getValue().toString());
+                                }
+                                return new TimelineAbstract(snapshot.child("nama").getValue().toString(),
+                                        snapshot.child("isi").getValue().toString(),
+                                        snapshot.child("tanggal").getValue().toString(),
+                                        snapshot.child("jam").getValue().toString());
+                            }
+                        }).build();
+
         firebase = new FirebaseRecyclerAdapter<TimelineAbstract, ViewHolder>(options) {
 
             @NonNull
@@ -94,9 +139,15 @@ public class TimelineFragment extends Fragment {
 
             @Override
             protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull TimelineAbstract model) {
+
                 holder.setmNama(model.getName());
                 holder.setmTanggal(model.getTanggal());
                 holder.setmIsi(model.getDesc());
+                holder.setmJam(model.getJam());
+                Uri user = mAuth.getCurrentUser().getPhotoUrl();
+                Picasso.with(context)
+                        .load(user)
+                        .into(holder.getmImagePP());
                 if (model.getImagePost() != null) {
                     ImageView imageView = inflate.findViewById(R.id.timeline_imageview_photo);
                     imageView.setVisibility(View.VISIBLE);
@@ -123,11 +174,13 @@ public class TimelineFragment extends Fragment {
         super.onStop();
         firebase.stopListening();
     }
+
+
 }
 
 class ViewHolder extends RecyclerView.ViewHolder {
     private CoordinatorLayout root;
-    private TextView mNama, mTanggal, mIsi;
+    private TextView mNama, mTanggal, mIsi, mJam;
     private ImageView mImagePP, mImagePost;
     private Drawable drawablePP, drawablePost;
 
@@ -180,7 +233,15 @@ class ViewHolder extends RecyclerView.ViewHolder {
         mIsi = itemView.findViewById(R.id.timeline_textview_isi);
         mImagePP = itemView.findViewById(R.id.timeline_imageview_profile);
         mImagePost = itemView.findViewById(R.id.timeline_imageview_photo);
+        mJam = itemView.findViewById(R.id.timeline_textview_jam);
+    }
 
+    public TextView getmJam() {
+        return mJam;
+    }
+
+    public void setmJam(String jam) {
+        mJam.setText(jam);
     }
 }
 
@@ -190,9 +251,18 @@ class TimelineAbstract {
     private String imagePost;
     private String desc;
     private String tanggal;
+    private String jam;
 
-    public TimelineAbstract(String name, String imagePP, String imagePost, String desc, String tanggal) {
+    public TimelineAbstract(String name, String desc, String tanggal, String jam) {
         this.name = name;
+        this.desc = desc;
+        this.tanggal = tanggal;
+        this.jam = jam;
+    }
+
+    public TimelineAbstract(String name, String imagePost, String desc, String tanggal, String jam) {
+        this.name = name;
+        this.jam = jam;
         this.imagePP = imagePP;
         this.imagePost = imagePost;
         this.desc = desc;
@@ -237,5 +307,13 @@ class TimelineAbstract {
 
     public void setTanggal(String tanggal) {
         this.tanggal = tanggal;
+    }
+
+    public String getJam() {
+        return jam;
+    }
+
+    public void setJam(String jam) {
+        this.jam = jam;
     }
 }
