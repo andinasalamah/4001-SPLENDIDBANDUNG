@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".NewTimelinePost"></activity>
+        <activity android:name=".NewReportActivity"></activity>
+        <activity android:name=".NewTimelinePost" />
         <activity android:name=".MainMenu" />
         <activity android:name=".Sign_In">
             <intent-filter>

@@ -97,9 +97,4 @@ public class MainMenu extends AppCompatActivity {
         calendar.setTime(date);
         return calendar.get(Calendar.HOUR_OF_DAY);
     }
-
-    public void newpost(View view) {
-        CoordinatorLayout coor = findViewById(R.id.coor_timeline);
-        Snackbar.make(coor, "Add something here", Snackbar.LENGTH_LONG).show();
-    }
 }
