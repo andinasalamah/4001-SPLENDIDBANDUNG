@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".NewReportActivity"></activity>
+        <activity android:name=".NewReportActivity" />
         <activity android:name=".NewTimelinePost" />
         <activity android:name=".MainMenu" />
         <activity android:name=".Sign_In">
@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Interface" />
+        <activity android:name=".Bandara.ListBandara" />
+        <activity android:name=".Belanja.ListBelanja"></activity>
     </application>
 
 </manifest>

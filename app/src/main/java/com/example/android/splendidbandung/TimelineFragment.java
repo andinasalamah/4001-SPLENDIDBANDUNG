@@ -123,7 +123,9 @@ public class TimelineFragment extends Fragment {
                                 return new TimelineAbstract(snapshot.child("nama").getValue().toString(),
                                         snapshot.child("isi").getValue().toString(),
                                         snapshot.child("tanggal").getValue().toString(),
-                                        snapshot.child("jam").getValue().toString());
+//                                        snapshot.child("jam").getValue().toString())
+                                        "")
+                                        ;
                             }
                         }).build();
 

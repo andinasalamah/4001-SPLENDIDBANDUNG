@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.android.splendidbandung.Bandara.ListBandara;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.Task;
@@ -96,5 +97,13 @@ public class MainMenu extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar.get(Calendar.HOUR_OF_DAY);
+    }
+
+    public void toBandara(View view) {
+        startActivity(new Intent(this, ListBandara.class));
+        finish();
+    }
+
+    public void toBelanja(View view) {
     }
 }
