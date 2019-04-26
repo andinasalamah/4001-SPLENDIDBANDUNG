@@ -84,10 +84,20 @@ public class NewTimelinePost extends AppCompatActivity {
         });
 
     }
-
+String desc, uid, nama, date, currentTime, timeMillis;
     private void upload() {
         progressBar.setVisibility(View.VISIBLE);
         progressBar.setIndeterminate(true);
+        String desc = isi.getText().toString();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        uid = user.getUid();
+        nama = user.getDisplayName();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        SimpleDateFormat jam = new SimpleDateFormat("hh:mm", Locale.getDefault());
+        date = dateFormat.format(Calendar.getInstance().getTime());
+        currentTime = jam.format(Calendar.getInstance().getTime());
+        timeMillis = System.currentTimeMillis() + uid;
         if (mImageUri != null) {
             final StorageReference fileReference = mStorageReference.child(String.valueOf(System.currentTimeMillis() + getFileExtension(mImageUri)));
             final UploadTask uploadTask = fileReference.putFile(mImageUri);
@@ -129,7 +139,7 @@ public class NewTimelinePost extends AppCompatActivity {
                             taskMap.put("image", taskResult);
                             taskMap.put("isi", desc);
                             taskMap.put("tanggal", date);
-                            mDatabase.child(uid).updateChildren(taskMap);
+                            mDatabase.child(timeMillis).updateChildren(taskMap);
                             finish();
                         } catch (NullPointerException e) {
                             Toast.makeText(NewTimelinePost.this, "Error! " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -139,14 +149,6 @@ public class NewTimelinePost extends AppCompatActivity {
                 }
             });
         } else {
-            String desc = isi.getText().toString();
-            mAuth = FirebaseAuth.getInstance();
-            FirebaseUser user = mAuth.getCurrentUser();
-            String uid = user.getUid();
-            String nama = user.getDisplayName();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-            String date = dateFormat.format(Calendar.getInstance().getTime());
-            String timeMillis = String.valueOf(System.currentTimeMillis()+uid);
             if (uid == null || nama == null) {
                 Toast.makeText(NewTimelinePost.this, "Kamu belum login!", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(NewTimelinePost.this, Sign_In.class));
@@ -158,8 +160,12 @@ public class NewTimelinePost extends AppCompatActivity {
                 if (nama != null) {
                     taskMap.put("nama", nama);
                 }
+                if (mImageUri != null) {
+                    taskMap.put("image", mImageUri);
+                }
                 taskMap.put("isi", desc);
                 taskMap.put("tanggal", date);
+                taskMap.put("jam", currentTime);
                 mDatabase.child(timeMillis).updateChildren(taskMap);
                 finish();
             } catch (NullPointerException e) {

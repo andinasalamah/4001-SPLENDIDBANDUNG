@@ -143,10 +143,10 @@ public class LaporanFragment extends Fragment {
                 holder.setmTanggal(model.getTanggal());
                 holder.setmIsi(model.getDesc());
                 holder.setmJam(model.getJam());
-                Uri user = mAuth.getCurrentUser().getPhotoUrl();
-                Picasso.with(context)
-                        .load(user)
-                        .into(holder.getmImagePP());
+//                Uri user = mAuth.getCurrentUser().getPhotoUrl();
+//                Picasso.with(context)
+//                        .load(user)
+//                        .into(holder.getmImagePP());
                 if (model.getImagePost() != null) {
                     ImageView imageView = inflate.findViewById(R.id.timeline_imageview_photo);
                     imageView.setVisibility(View.VISIBLE);
