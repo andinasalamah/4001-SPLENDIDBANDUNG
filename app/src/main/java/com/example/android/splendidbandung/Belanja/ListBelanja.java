@@ -56,6 +56,7 @@ public class ListBelanja extends AppCompatActivity{
         mRecyclerView.setAdapter(mAdapter);
     }
     /*create options Menu on your Activity*/
+    //ini komen hehehehe
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.
