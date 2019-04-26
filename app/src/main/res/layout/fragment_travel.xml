@@ -42,8 +42,8 @@
                     android:layout_width="90dp"
                     android:layout_height="128dp"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/bandara"
-                    android:onClick="toBandara"/>
+                    app:srcCompat="@drawable/bandara12"
+                    android:onClick="Bandara"/>
 
                 <ImageButton
                     android:id="@+id/belanja"

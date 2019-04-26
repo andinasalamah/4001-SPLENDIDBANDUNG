@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         categories.add(new Categories("Penginapan", R.drawable.penginapan));
         categories.add(new Categories("Belanja", R.drawable.belanja));
         categories.add(new Categories("Stasiun", R.drawable.stasiun));
-        categories.add(new Categories("Bandara", R.drawable.bandara));
+        categories.add(new Categories("Bandara", R.drawable.bandara12));
         categories.add(new Categories("Rumah Makan", R.drawable.rumah_makan));
         categories.add(new Categories("Wisata Alam", R.drawable.wisata_alam));
         categories.add(new Categories("Travel", R.drawable.travel));

@@ -1,19 +1,13 @@
 package com.example.android.splendidbandung.Bandara;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.example.android.splendidbandung.Bandara.Bandara;
-import com.example.android.splendidbandung.Bandara.BandaraAdapter;
 import com.example.android.splendidbandung.R;
 
 import java.util.ArrayList;
@@ -42,14 +36,7 @@ public class ListBandara extends AppCompatActivity{
 
         /*initialised list for costom list and add data*/
         list = new ArrayList<Bandara>();
-        list.add(new Bandara("Manish Rajput","manish@gmail.com",R.drawable.a1));
-        list.add(new Bandara("Vinit yadav","vinit@gmail.com",R.drawable.a2));
-        list.add(new Bandara("Anoop","anoop@gmail.com",R.drawable.a1));
-        list.add(new Bandara("Dheeraj","Dheeraj@gmail.com",R.drawable.a2));
-        list.add(new Bandara("Ramu","Ramu@gmail.com",R.drawable.a1));
-        list.add(new Bandara("Pankaj","manish@gmail.com",R.drawable.a2));
-        list.add(new Bandara("Ketan","Ketan@gmail.com",R.drawable.a1));
-        list.add(new Bandara("Akshay","Akshay@gmail.com",R.drawable.a2));
+        list.add(new Bandara("Bandara Husein Sastranegara","Jl. Pajajaran No.156, Husen Sastranegara, Cicendo, Kota Bandung, Jawa Barat 40173", R.drawable.airport));
 
         /*initialised Adapter Class and set Adapter on ListView */
         mAdapter = new BandaraAdapter(list, R.layout.adaptor_item, this);

@@ -4,8 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.android.splendidbandung.Bandara.ListBandara;
+import com.example.android.splendidbandung.Belanja.ListBelanja;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.Task;
@@ -99,11 +98,12 @@ public class MainMenu extends AppCompatActivity {
         return calendar.get(Calendar.HOUR_OF_DAY);
     }
 
-    public void toBandara(View view) {
-        startActivity(new Intent(this, ListBandara.class));
-        finish();
+    public void toBelanja(View view) {
+        startActivity(new Intent(this, ListBelanja.class));
     }
 
-    public void toBelanja(View view) {
+    public void Bandara(View view) {
+        startActivity(new Intent(this, ListBandara.class));
+        finish();
     }
 }

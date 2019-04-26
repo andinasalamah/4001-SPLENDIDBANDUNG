@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.BreakIterator;
 import java.util.List;
 import com.example.android.splendidbandung.R;
 //import demo.androidpoint.com.androidcostomlist.modal.item;
@@ -35,17 +37,17 @@ public class BandaraAdapter extends RecyclerView.Adapter<BandaraAdapter.ViewHold
         Bandara myItem = countries.get(i);
         viewHolder.Name.setText(myItem.getName());
         viewHolder.Image.setImageDrawable(mContext.getDrawable(myItem.getOmg()));
-        viewHolder.email.setText(myItem.getEmail());
+        viewHolder.Alamat.setText(myItem.getAlamat());
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView Name,email;
+        public TextView Name,Alamat;
         public ImageView Image;
 
         public ViewHolder(View itemView) {
             super(itemView);
             Name = (TextView) itemView.findViewById(R.id.text_name);
             Image = (ImageView)itemView.findViewById(R.id.Image);
-            email = (TextView) itemView.findViewById(R.id.text_email);
+            Alamat = (TextView) itemView.findViewById(R.id.text_alamat);
         }
     }
 }

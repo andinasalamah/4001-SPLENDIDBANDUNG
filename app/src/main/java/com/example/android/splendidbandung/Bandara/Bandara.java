@@ -1,25 +1,28 @@
 package com.example.android.splendidbandung.Bandara;
 
 public class Bandara {
-    public String name ,email;
+    public String name , alamat;
     public int omg;
-    public Bandara(String name, String email, int omg) {
+    public Bandara(String name, String alamat, int omg) {
         this.name = name;
-        this.email = email;
+        this.alamat = alamat;
         this.omg = omg;
     }
+
     public String getName() {
         return name;
     }
     public void setName(String name) {
         this.name = name;
     }
-    public String getEmail() {
-        return email;
+
+    public String getAlamat() {
+        return alamat;
     }
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
+
     public int getOmg() {
         return omg;
     }

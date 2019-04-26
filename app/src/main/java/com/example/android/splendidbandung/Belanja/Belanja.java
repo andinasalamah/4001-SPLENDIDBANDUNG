@@ -1,12 +1,12 @@
 package com.example.android.splendidbandung.Belanja;
 
 public class Belanja {
-    public String name ,email;
+    public String name , alamat;
     public int omg;
-    public Belanja(String name, String email, int omg) {
+    public Belanja(String name, String alamat, int omg) {
         this.name = name;
-        this.email = email;
-        this.omg = omg;
+        this.alamat = alamat;
+        this.omg= omg;
     }
     public String getName() {
         return name;
@@ -14,16 +14,18 @@ public class Belanja {
     public void setName(String name) {
         this.name = name;
     }
-    public String getEmail() {
-        return email;
+
+    public String getAlamat() {
+        return alamat;
     }
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
-    public int getOmg() {
+
+    public Integer getOmg() {
         return omg;
     }
-    public void setOmg(int omg) {
+    public void setOmg(Integer omg) {
         this.omg = omg;
     }
 

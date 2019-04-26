@@ -12,8 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.android.splendidbandung.Bandara.Bandara;
-import com.example.android.splendidbandung.Bandara.BandaraAdapter;
+import com.example.android.splendidbandung.Belanja.Belanja;
+import com.example.android.splendidbandung.Belanja.BelanjaAdapter;
 import com.example.android.splendidbandung.R;
 
 import java.util.ArrayList;
@@ -21,15 +21,15 @@ import java.util.ArrayList;
 
 public class ListBelanja extends AppCompatActivity{
     RecyclerView mRecyclerView;
-    BandaraAdapter mAdapter;
-    ArrayList<Bandara> list;
+    BelanjaAdapter mAdapter;
+    ArrayList<Belanja> list;
     private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_belanja);
-        mRecyclerView = (RecyclerView)findViewById(R.id.list);
+        mRecyclerView = (RecyclerView)findViewById(R.id.listBelanja);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -41,18 +41,14 @@ public class ListBelanja extends AppCompatActivity{
 //        getSupportActionBar().setTitle("Material Design CardView");
 
         /*initialised list for costom list and add data*/
-        list = new ArrayList<Bandara>();
-        list.add(new Bandara("Manish Rajput","manish@gmail.com",R.drawable.a1));
-        list.add(new Bandara("Vinit yadav","vinit@gmail.com",R.drawable.a2));
-        list.add(new Bandara("Anoop","anoop@gmail.com",R.drawable.a1));
-        list.add(new Bandara("Dheeraj","Dheeraj@gmail.com",R.drawable.a2));
-        list.add(new Bandara("Ramu","Ramu@gmail.com",R.drawable.a1));
-        list.add(new Bandara("Pankaj","manish@gmail.com",R.drawable.a2));
-        list.add(new Bandara("Ketan","Ketan@gmail.com",R.drawable.a1));
-        list.add(new Bandara("Akshay","Akshay@gmail.com",R.drawable.a2));
+        list = new ArrayList<Belanja>();
+        list.add(new Belanja("23 Paskal","Jl. Pasir Kaliki No.23, Arjuna, Cicendo, Kota Bandung, Jawa Barat 40172", R.drawable.paskal));
+        list.add(new Belanja("Bandung Indah Plaza","Jl. Merdeka No.56, Citarum, Bandung Wetan, Kota Bandung, Jawa Barat 40115", R.drawable.bip));
+        list.add(new Belanja("Paris van Java","Jalan Sukajadi, Cipedes, Sukajadi, Kota Bandung, Jawa Barat 40162", R.drawable.pvj));
+
 
         /*initialised Adapter Class and set Adapter on ListView */
-        mAdapter = new BandaraAdapter(list, R.layout.adaptor_item, this);
+        mAdapter = new BelanjaAdapter(list, R.layout.adaptor_item, this);
         mRecyclerView.setAdapter(mAdapter);
     }
     /*create options Menu on your Activity*/
