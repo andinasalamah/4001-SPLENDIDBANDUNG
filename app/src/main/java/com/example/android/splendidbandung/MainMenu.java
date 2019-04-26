@@ -2,14 +2,18 @@ package com.example.android.splendidbandung;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -25,6 +29,12 @@ import java.util.Date;
 
 public class MainMenu extends AppCompatActivity {
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
     private static final String TAG = "MainMenu";
     RecyclerView recyclerView;
     HotPlacesAdapter mAdapter;
@@ -36,13 +46,48 @@ public class MainMenu extends AppCompatActivity {
     private ViewPager mViewPager;
     private TabsAdapter tabsAdapter = new TabsAdapter(getSupportFragmentManager());
     private TabLayout mTabLayout;
-
+    private DrawerLayout sidebar;
+    String currentTheme;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("theme", MODE_PRIVATE);
+        if (!currentTheme.equals(preferences.getString("theme", "green"))) {
+            recreate();
+        }
+    }
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Theme Controller Start
+        SharedPreferences sharedPreferences = getSharedPreferences("theme", MODE_PRIVATE);
+        currentTheme = sharedPreferences.getString("theme", "green");
+        switch (currentTheme) {
+            case "green":
+                setTheme(R.style.AppTheme_NoActionBar);
+                break;
+            case "blue":
+                setTheme(R.style.AppTheme_Blue_NoActionBar);
+                break;
+            case "white":
+                setTheme(R.style.AppTheme_White_NoActionBar);
+                break;
+            case "black":
+                setTheme(R.style.AppTheme_Black_NoActionBar);
+                break;
+        }
+        //Theme Controller End
         setContentView(R.layout.activity_main_menu);
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainMenu.this, SettingsActivity.class));
+            }
+        });
         if (acct != null) {
             dn = acct.getDisplayName();
             Log.d("onStart", acct.getDisplayName());

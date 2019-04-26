@@ -4,7 +4,8 @@
     android:id="@+id/card_timeline"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardElevation="3dp"
+    card_view:cardElevation="6dp"
+    android:minHeight="4dp"
     card_view:cardUseCompatPadding="true">
 
     <android.support.constraint.ConstraintLayout

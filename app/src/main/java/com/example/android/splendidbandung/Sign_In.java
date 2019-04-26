@@ -17,12 +17,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -41,6 +44,7 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
         }
     };
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +58,19 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
 
         //Using Google Services API
         FirebaseApp.initializeApp(this);
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("405184337418-b0gtnl69g7amurfc5mjbr10csjicamg1.apps.googleusercontent.com")
-                .requestEmail()
-                .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        mAuth = FirebaseAuth.getInstance();
-        findViewById(R.id.signin_btn).setOnClickListener(this);
+        try {
+
+
+            gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken("405184337418-b0gtnl69g7amurfc5mjbr10csjicamg1.apps.googleusercontent.com")
+                    .requestEmail()
+                    .build();
+            mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+            mAuth = FirebaseAuth.getInstance();
+            findViewById(R.id.signin_btn).setOnClickListener(this);
+        } catch (Exception e) {
+            Toast.makeText(this, "Error! " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -86,8 +96,8 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
             try {
                 account = task.getResult(ApiException.class);
                 firebaseAuth();
-            } catch (ApiException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                Toast.makeText(this, "Error!" + e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
         }
@@ -101,47 +111,29 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
-                            start(user.getDisplayName());
+                            start();
                         }
                     }
                 }).addOnFailureListener(this, new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Sign_In.this, "Error! "+e, Toast.LENGTH_LONG)
+                Toast.makeText(Sign_In.this, "Error! " + e, Toast.LENGTH_LONG)
                         .show();
             }
         });
     }
 
-//    private void handleSignIn(Task<GoogleSignInAccount> task) {
-//        try {
-//            account = task.getResult(ApiException.class);
-//            Snackbar.make(coordinatorLayout, "Kamu terdaftar sebagai " + account.getDisplayName(), Snackbar.LENGTH_LONG)
-//                    .show();
-//            start(account.getDisplayName());
-//
-//        } catch (ApiException e) {
-//            Snackbar.make(coordinatorLayout, "Login gagal! " + e.getStatusCode(), Snackbar.LENGTH_INDEFINITE);
-//        }
-//    }
-
-    private void start(String DisplayName) {
+    private void start() {
+        user = mAuth.getCurrentUser();
+        user.getIdToken(false).addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
+            @Override
+            public void onSuccess(GetTokenResult getTokenResult) {
+            }
+        });
         Intent intent = new Intent(Sign_In.this, MainMenu.class);
-        intent.putExtra("DisplayName", DisplayName);
+        intent.putExtra("DisplayName", user.getDisplayName());
         startActivity(intent);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            Snackbar.make(coordinatorLayout, "Kamu terdaftar sebagai " + user.getDisplayName(), Snackbar.LENGTH_LONG)
-                    .show();
-            start(user.getDisplayName());
-            finish();
-        }
-
+        finish();
     }
 
 }
