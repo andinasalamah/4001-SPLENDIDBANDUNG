@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".MainMenu">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/categories"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appbar"
+            app:layout_constraintVertical_bias="0.0">
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/bandara"
+                    android:layout_width="90dp"
+                    android:layout_height="128dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/bandara" />
+
+                <ImageButton
+                    android:id="@+id/belanja"
+                    android:layout_width="90dp"
+                    android:layout_height="128dp"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/belanja" />
+
+                <ImageButton
+                    android:id="@+id/penginapan"
+                    android:layout_width="90dp"
+                    android:layout_height="128dp"
+                    android:layout_row="0"
+                    android:layout_column="3"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/penginapan" />
+
+                <ImageButton
+                    android:id="@+id/rekreasi"
+                    android:layout_width="90dp"
+                    android:layout_height="128dp"
+                    android:layout_row="0"
+                    android:layout_column="4"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/rekreasi" />
+
+                <ImageButton
+                    android:id="@+id/rmhmakan"
+                    android:layout_width="90dp"
+                    android:layout_height="128dp"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/rumah_makan" />
+
+                <ImageButton
+                    android:id="@+id/travel"
+                    android:layout_width="90dp"
+                    android:layout_height="128dp"
+                    android:layout_row="1"
+                    android:layout_column="3"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/travel" />
+
+                <ImageButton
+                    android:id="@+id/wisata"
+                    android:layout_width="90dp"
+                    android:layout_height="128dp"
+                    android:layout_row="1"
+                    android:layout_column="4"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/wisata_alam" />
+
+                <ImageButton
+                    android:id="@+id/ibadah"
+                    android:layout_width="90dp"
+                    android:layout_height="128dp"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/tempat_ibadah" />
+
+            </GridLayout>
+        </android.support.design.widget.CoordinatorLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

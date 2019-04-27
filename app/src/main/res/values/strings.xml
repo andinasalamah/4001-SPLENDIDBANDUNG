@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Splendid Bandung</string>
+    <string name="title_activity_sign_in">SignIn</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="default_main_title">Selamat pagi, Guest. \nMau ke mana?</string>
+    <string name="display_guest">Guest</string>
+    <string name="card_name_placeholder">Nama</string>
+    <string name="card_desc_placeholder">Deskripsi</string>
+    <string-array name="greetings">
+        <item>Selamat Pagi</item>
+        <item>Selamat Siang</item>
+        <item>Selamat Sore</item>
+        <item>Selamat Malam</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+</resources>
