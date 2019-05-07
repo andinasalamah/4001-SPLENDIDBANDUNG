@@ -12,6 +12,9 @@ import android.widget.ImageButton;
 
 import com.example.android.splendidbandung.Bandara.ListBandara;
 import com.example.android.splendidbandung.Belanja.ListBelanja;
+import com.example.android.splendidbandung.Penginapan.ListPenginapan;
+import com.example.android.splendidbandung.RumahMakan.ListRumahMakan;
+import com.example.android.splendidbandung.Travel.ListTravel;
 
 public class TravelFragment extends Fragment implements View.OnClickListener{
     ImageButton bandara, belanja, penginapan, rekreasi, rmhmakan, ibadah, travel, wisata;
@@ -56,21 +59,27 @@ public class TravelFragment extends Fragment implements View.OnClickListener{
                 intent1.putExtra("tujuan", "belanja");
                 startActivity(intent1);
                 break;
-//            case R.id.penginapan:
-//                Intent intent = new Intent(getActivity(), MainMenu.class);
-//                intent.putExtra("tujuan", "penginapan");
-//                startActivity(intent);
-//                break;
+            case R.id.penginapan:
+                Intent intent2 = new Intent(getActivity(), ListPenginapan.class);
+                intent2.putExtra("tujuan", "penginapan");
+                startActivity(intent2);
+                break;
+            case R.id.travel:
+                Intent intent3 = new Intent(getActivity(), ListTravel.class);
+                intent3.putExtra("tujuan", "penginapan");
+                startActivity(intent3);
+                break;
+            case R.id.rmhmakan:
+                Intent intent4 = new Intent(getActivity(), ListRumahMakan.class);
+                intent4.putExtra("tujuan", "rumahmakan");
+                startActivity(intent4);
+                break;
 //            case R.id.rekreasi:
 //                Intent intent = new Intent(getActivity(), MainMenu.class);
 //                intent.putExtra("tujuan", "rekreasi");
 //                startActivity(intent);
 //                break;
-//            case R.id.rmhmakan:
-//                Intent intent = new Intent(getActivity(), MainMenu.class);
-//                intent.putExtra("tujuan", "rumahmakan");
-//                startActivity(intent);
-//                break;
+
 //            case R.id.ibadah:
 //
 //                intent.putExtra("tujuan", "ibadah");

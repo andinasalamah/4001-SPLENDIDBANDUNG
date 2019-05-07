@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Bandara.DetailBandara"></activity>
+        <activity android:name=".Bandara.DetailBandara" />
         <activity android:name=".SettingsActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -48,6 +48,9 @@
         <activity android:name=".Interface" />
         <activity android:name=".Bandara.ListBandara" />
         <activity android:name=".Belanja.ListBelanja" />
+        <activity android:name=".Penginapan.ListPenginapan"/>
+        <activity android:name=".Travel.ListTravel"/>
+        <activity android:name=".RumahMakan.ListRumahMakan"/>
     </application>
 
 </manifest>
