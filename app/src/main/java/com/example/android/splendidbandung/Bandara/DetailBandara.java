@@ -17,16 +17,16 @@ public class DetailBandara extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_bandara);
         imageView = findViewById(R.id.imageButton);
-        textView= findViewById(R.id.textView4);
-        textView1 = findViewById(R.id.textView3);
-
-        Intent intent = getIntent();
-        String a = intent.getStringExtra("nama");
-        String b = intent.getStringExtra("Detail");
-        String c = intent.getStringExtra("image");
-
-//        imageView.setImageDrawable(c);
-        textView.setText(a);
-        textView1.setText(b);
+//        textView= findViewById(R.id.textView4);
+//        textView1 = findViewById(R.id.textView3);
+//
+//        Intent intent = getIntent();
+//        String a = intent.getStringExtra("nama");
+//        String b = intent.getStringExtra("Detail");
+//        String c = intent.getStringExtra("image");
+//
+////        imageView.setImageDrawable(c);
+//        textView.setText(a);
+//        textView1.setText(b);
     }
 }

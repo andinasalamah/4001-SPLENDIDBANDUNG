@@ -1,6 +1,5 @@
-package com.example.android.splendidbandung.Bandara;
+package com.example.android.splendidbandung.Penginapan;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -8,24 +7,27 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.android.splendidbandung.R;
 
 import java.util.ArrayList;
+
+//
+//import com.example.android.splendidbandung.Penginapan.Penginapan;
+//import com.example.android.splendidbandung.PenginapanAdapter.PenginapanAdapter;
 //import demo.androidpoint.com.androidcostomlist.modal.item;
 
-public class ListBandara extends AppCompatActivity {
+public class ListPenginapan extends AppCompatActivity {
     RecyclerView mRecyclerView;
-    BandaraAdapter mAdapter;
-    ArrayList<Bandara> list;
+    PenginapanAdapter mAdapter;
+    ArrayList<Penginapan> list;
     private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_bandara);
-        mRecyclerView = (RecyclerView)findViewById(R.id.list);
+        setContentView(R.layout.activity_list_penginapan);
+        mRecyclerView = (RecyclerView)findViewById(R.id.listpenginapan);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -37,17 +39,18 @@ public class ListBandara extends AppCompatActivity {
 //        getSupportActionBar().setTitle("Material Design CardView");
 
         /*initialised list for costom list and add data*/
-        list = new ArrayList<Bandara>();
-        list.add(new Bandara("Bandara Husein Sastranegara",
-                "Jl. Pajajaran No.156, Husen Sastranegara, Cicendo, Kota Bandung, Jawa Barat 40173",
-                R.drawable.airport,
-                "Bandara Husein Sastranegara"));
+        list = new ArrayList<Penginapan>();
+        list.add(new Penginapan("El Royale","Jl. Merdeka No.2, Braga, Sumur Bandung, Kota Bandung, Jawa Barat 40111", R.drawable.elroyale));
+        list.add(new Penginapan("The Trans Luxury Hotel","Jl. Gatot Subroto No.289, Cibangkong, Batununggal, Kota Bandung, Jawa Barat 40273", R.drawable.thetrans));
+        list.add(new Penginapan("The Papandayan Hotel","Jalan Sukajadi, Cipedes, Sukajadi, Kota Bandung, Jawa Barat 40162", R.drawable.papandayan));
+
 
         /*initialised Adapter Class and set Adapter on ListView */
-        mAdapter = new BandaraAdapter(list, R.layout.adaptor_item, this);
+        mAdapter = new PenginapanAdapter(list, R.layout.adaptor_item, this);
         mRecyclerView.setAdapter(mAdapter);
     }
     /*create options Menu on your Activity*/
+    //ini komen hehehehe
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.
@@ -68,8 +71,4 @@ public class ListBandara extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void toDetails (View view){
-        startActivity(new Intent(ListBandara.this, DetailBandara.class));
-        finish();
-    }
 }

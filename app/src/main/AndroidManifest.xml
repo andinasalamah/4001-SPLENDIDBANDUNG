@@ -19,6 +19,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".Bandara.DetailBandara"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -45,6 +46,8 @@
         <activity android:name=".Sign_In"/>
         <activity android:name=".Interface" />
         <activity android:name=".Bandara.ListBandara"/>
+        <activity android:name=".Belanja.ListBelanja"/>
+        <activity android:name=".Penginapan.ListPenginapan"/>
     </application>
 
 </manifest>

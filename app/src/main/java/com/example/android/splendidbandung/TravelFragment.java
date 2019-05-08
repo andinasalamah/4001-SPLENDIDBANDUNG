@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.android.splendidbandung.Bandara.ListBandara;
+import com.example.android.splendidbandung.Belanja.ListBelanja;
+import com.example.android.splendidbandung.Penginapan.ListPenginapan;
 //import com.example.android.splendidbandung.Belanja.ListBelanja;
 //import com.example.android.splendidbandung.Penginapan.ListPenginapan;
 //import com.example.android.splendidbandung.RumahMakan.ListRumahMakan;
@@ -55,16 +57,16 @@ public class TravelFragment extends Fragment implements View.OnClickListener{
                 intent.putExtra("tujuan", "bandara");
                 startActivity(intent);
                 break;
-//            case R.id.belanja:
-//                Intent intent1 = new Intent(getActivity(), ListBelanja.class);
-//                intent1.putExtra("tujuan", "belanja");
-//                startActivity(intent1);
-//                break;
-//            case R.id.penginapan:
-//                Intent intent2 = new Intent(getActivity(), ListPenginapan.class);
-//                intent2.putExtra("tujuan", "penginapan");
-//                startActivity(intent2);
-//                break;
+            case R.id.belanja:
+                Intent intent1 = new Intent(getActivity(), ListBelanja.class);
+                intent1.putExtra("tujuan", "belanja");
+                startActivity(intent1);
+                break;
+            case R.id.penginapan:
+                Intent intent2 = new Intent(getActivity(), ListPenginapan.class);
+                intent2.putExtra("tujuan", "penginapan");
+                startActivity(intent2);
+                break;
 //            case R.id.travel:
 //                Intent intent3 = new Intent(getActivity(), ListTravel.class);
 //                intent3.putExtra("tujuan", "penginapan");
