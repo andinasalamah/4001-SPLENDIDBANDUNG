@@ -13,6 +13,9 @@ import android.widget.ImageButton;
 import com.example.android.splendidbandung.Bandara.ListBandara;
 import com.example.android.splendidbandung.Belanja.ListBelanja;
 import com.example.android.splendidbandung.Penginapan.ListPenginapan;
+import com.example.android.splendidbandung.Rekreasi.ListRekreasi;
+import com.example.android.splendidbandung.RumahMakan.ListRumahMakan;
+import com.example.android.splendidbandung.TempatIbadah.ListTempatIbadah;
 //import com.example.android.splendidbandung.Belanja.ListBelanja;
 //import com.example.android.splendidbandung.Penginapan.ListPenginapan;
 //import com.example.android.splendidbandung.RumahMakan.ListRumahMakan;
@@ -67,26 +70,29 @@ public class TravelFragment extends Fragment implements View.OnClickListener{
                 intent2.putExtra("tujuan", "penginapan");
                 startActivity(intent2);
                 break;
+            case R.id.rmhmakan:
+                Intent intent4 = new Intent(getActivity(), ListRumahMakan.class);
+                intent4.putExtra("tujuan", "rumahmakan");
+                startActivity(intent4);
+                break;
+            case R.id.rekreasi:
+                Intent intent5 = new Intent(getActivity(), ListRekreasi.class);
+                intent5.putExtra("tujuan", "rekreasi");
+                startActivity(intent5);
+                break;
+            case R.id.ibadah:
+                Intent intent6 = new Intent(getActivity(), ListTempatIbadah.class);
+                intent6.putExtra("tujuan", "rumahmakan");
+                startActivity(intent6);
+                break;
+
 //            case R.id.travel:
 //                Intent intent3 = new Intent(getActivity(), ListTravel.class);
 //                intent3.putExtra("tujuan", "penginapan");
 //                startActivity(intent3);
 //                break;
-//            case R.id.rmhmakan:
-//                Intent intent4 = new Intent(getActivity(), ListRumahMakan.class);
-//                intent4.putExtra("tujuan", "rumahmakan");
-//                startActivity(intent4);
-//                break;
-//            case R.id.ibadah:
-//                Intent intent5 = new Intent(getActivity(), ListTempatIbadah.class);
-//                intent5.putExtra("tujuan", "rumahmakan");
-//                startActivity(intent5);
-//                break;
-//            case R.id.rekreasi:
-//                Intent intent = new Intent(getActivity(), MainMenu.class);
-//                intent.putExtra("tujuan", "rekreasi");
-//                startActivity(intent);
-//                break;
+
+
 
 //            case R.id.ibadah:
 //
