@@ -44,6 +44,7 @@
         </activity>
         <activity android:name=".Sign_In"/>
         <activity android:name=".Interface" />
+        <activity android:name=".Bandara.ListBandara"/>
     </application>
 
 </manifest>
