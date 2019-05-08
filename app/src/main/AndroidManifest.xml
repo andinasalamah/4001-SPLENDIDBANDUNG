@@ -20,6 +20,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".SettingsActivity"></activity>
         <activity android:name=".Bandara.DetailBandara"></activity>
+        <activity android:name=".Belanja.DetailBelanja"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -48,6 +49,9 @@
         <activity android:name=".Bandara.ListBandara"/>
         <activity android:name=".Belanja.ListBelanja"/>
         <activity android:name=".Penginapan.ListPenginapan"/>
+        <activity android:name=".RumahMakan.ListRumahMakan"/>
+        <activity android:name=".Rekreasi.ListRekreasi"/>
+        <activity android:name=".TempatIbadah.ListTempatIbadah"/>
     </application>
 
 </manifest>

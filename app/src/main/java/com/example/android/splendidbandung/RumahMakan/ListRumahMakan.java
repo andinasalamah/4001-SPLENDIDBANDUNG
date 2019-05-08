@@ -1,6 +1,4 @@
-package com.example.android.splendidbandung.Belanja;
-
-import android.content.Intent;
+package com.example.android.splendidbandung.RumahMakan;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -8,24 +6,23 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.android.splendidbandung.R;
 
 import java.util.ArrayList;
 //import demo.androidpoint.com.androidcostomlist.modal.item;
 
-public class ListBelanja extends AppCompatActivity {
+public class ListRumahMakan extends AppCompatActivity {
     RecyclerView mRecyclerView;
-    BelanjaAdapter mAdapter;
-    ArrayList<Belanja> list;
+    RumahMakanAdapter mAdapter;
+    ArrayList<RumahMakan> list;
     private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_belanja);
-        mRecyclerView = (RecyclerView) findViewById(R.id.listBelanja);
+        setContentView(R.layout.activity_list_rumahmakan);
+        mRecyclerView = (RecyclerView)findViewById(R.id.listrumahmakan);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -37,17 +34,17 @@ public class ListBelanja extends AppCompatActivity {
 //        getSupportActionBar().setTitle("Material Design CardView");
 
         /*initialised list for costom list and add data*/
-        list = new ArrayList<Belanja>();
-        list.add(new Belanja("23 Paskal", "Jl. Pasir Kaliki No.23, Arjuna, Cicendo, Kota Bandung, Jawa Barat 40172", R.drawable.paskal));
-        list.add(new Belanja("Bandung Indah Plaza", "Jl. Merdeka No.56, Citarum, Bandung Wetan, Kota Bandung, Jawa Barat 40115", R.drawable.bip));
-        list.add(new Belanja("Paris van Java", "Jalan Sukajadi, Cipedes, Sukajadi, Kota Bandung, Jawa Barat 40162", R.drawable.pvj));
+        list = new ArrayList<RumahMakan>();
+        list.add(new RumahMakan("Abuba Steak Buah Batu","Jl. Pelajar Pejuang 45 No.70, Turangga, Lengkong, Kota Bandung, Jawa Barat 40262", R.drawable.abuba));
+        list.add(new RumahMakan("Karnivor Bandung","LLRE Martadinata Street No.127, Cihapit, Bandung Wetan, Bandung City, West Java 40114", R.drawable.karnivor));
+        list.add(new RumahMakan("The Parlor Bandung","Dago, Jalan Raya Rancakendal Luhur No.9, Ciburial, Coblong, Bandung, Jawa Barat 40191", R.drawable.parlor));
+        list.add(new RumahMakan("One Eighty Coffee Music","Jl. Ganeca No.3, Lb. Siliwangi, Coblong, Kota Bandung, Jawa Barat 40132", R.drawable.oneeighty));
 
 
         /*initialised Adapter Class and set Adapter on ListView */
-        mAdapter = new BelanjaAdapter(list, R.layout.adaptor_item, this);
+        mAdapter = new RumahMakanAdapter(list, R.layout.adaptor_item, this);
         mRecyclerView.setAdapter(mAdapter);
     }
-
     /*create options Menu on your Activity*/
     //ini komen hehehehe
 //    @Override
@@ -70,8 +67,4 @@ public class ListBelanja extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void toDetails(View view) {
-        startActivity(new Intent(ListBelanja.this, DetailBelanja.class));
-        finish();
-    }
 }

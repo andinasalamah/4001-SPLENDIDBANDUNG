@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bandara Husein Sastranegara"
+        android:text="Paris Van Java"
         android:textAlignment="center"
         android:textSize="25dp"
         android:textStyle="bold"/>
@@ -22,7 +22,7 @@
         android:layout_height="249dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        app:srcCompat="@drawable/airport"
+        app:srcCompat="@drawable/pvj"
         tools:layout_editor_absoluteY="107dp" />
 
     <TextView
@@ -33,7 +33,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:text="@string/txt_bandaraDetails"
+        android:text="@string/txt_pvjdetails"
         android:textSize="18sp"
         android:textColor="@color/whiteColorAccent"/>
 </LinearLayout>
